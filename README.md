@@ -31,8 +31,15 @@
 相关项目：
 - [基于 Node.js 原生打造一个静态资源服务器](https://github.com/MoonWang/node-http-static-server)
 - [实现一个 express 框架及常用中间件](https://github.com/MoonWang/express-like)
+- [实现一个 koa 框架及常用中间件](https://github.com/MoonWang/koa-like)
 
 ### 1.4 工程化
+
+- webpack
+    - [1. webpack配置及优化](http://suo.im/5hENdB)
+
+相关项目：
+- [webpack demo](https://github.com/MoonWang/webpack-demo)
 
 ### 1.5 React 全家桶
 
