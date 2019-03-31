@@ -34,7 +34,7 @@
 
 ## 1.4 工程化
 
-### webpack
+### 1、webpack
 
 - <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/4.Engineering/1.webpack/1.webpack配置及优化.md" target="_blank">1. webpack配置及优化</a>
 - <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/4.Engineering/1.webpack/2.AST抽象语法树.md" target="_blank">2. AST抽象语法树</a>
@@ -47,6 +47,29 @@
 - <a href="https://github.com/MoonWang/webpack-demo" target="_blank">webpack demo</a>
 - <a href="https://github.com/MoonWang/webpack-like" target="_blank">简单实现 webpack</a>
 
+### 2、git
+
+### 3、lint
+
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/4.Engineering/3.lint/1.ESLint.md" target="_blank">1. ESLint 入门</a>
+
 ## 1.5 React 全家桶
+
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/5.React/1.react基础.md" target="_blank">1. react基础</a>
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/5.React/2.react高级.md" target="_blank">2. react高级</a>
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/5.React/3.react-router.md" target="_blank">3. react-router</a>
+
+相关项目：
+- <a href="https://github.com/MoonWang/react-router-dom-like" target="_blank">react-router-like v4</a>
+
+## 1.6 Vue
+
+## 1.7 Browser
+
+## 1.8 Tools
+
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/8.Tools/1.chrome-devtools.md" target="_blank">1. chrome-devtools</a>
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/8.Tools/2.IDE.md" target="_blank">2. IDE</a>
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/8.Tools/3.mac.md" target="_blank">3. mac</a>
 
 # 二、前端进阶
