@@ -74,6 +74,24 @@ video.addEventListener('x5videoexitfullscreen', function() {
 
 比较常见的音量、播放进度，在此次直播 SDK 开发中未使用，如需用到可自行查阅相关文档，也都是从`绑定操作 + 监听对应事件`两点上进行需求定制。
 
+### 2.4 完全屏蔽原生
+
+某些低端机型中，不设置 controls 属性也会显示出默认控制组件，此时需要通过 css 实现屏蔽。
+
+实现全屏蔽：
+
+```css
+video::-webkit-media-controls {
+    display: none !important;
+}
+```
+
+如果需要屏蔽具体的某一个控件，可以通过查看 shaow dom 的方式，来查找对应的伪元素。chrome 开发者工具中，需要先在 `Settings - Elements - show userAgent shawdow` 勾选该功能。
+
+另，该属性只支持 webkit 内核，IOS 下自然无效。
+
+参考：[shadow dom解析](https://www.imweb.io/topic/5593cc62799539f821cd2541)
+
 # 三、全屏
 
 ## 1、屏蔽默认全屏
@@ -197,6 +215,21 @@ _t._video.addEventListener('x5videoexitfullscreen', function() {
 <video poster="URL"></video>
 ```
 
+### 补充
+
+如果想要 100% 覆盖，可以给 video 添加属性
+
+```css
+video {
+    object-fit: cover;
+}
+```
+
+这个会把封面和视频内容都100%覆盖，但是如果容器和视频源比例不同，会造成画面拉伸，体验可能不好。如果此时 video 使用了同一张图片作为背景图，则 background-size 也要取值 cover ，防止有抖动。
+
+
+注意：某些机型、app 中会默认添加一个很丑陋的封面，如果不用原生 poster 属性设置封面覆盖的话，体验很差。此时如果确实不需要封面，可以通过设置一个透明图片做封面来避免。
+
 ## 2、自定义封面
 
 在不需要自动播放的时候，可以考虑懒创建或延迟创建 video 实例，来提高访问性能。此时原生封面就不满足需要了，需要自定义。
@@ -303,3 +336,33 @@ var isWechat = ua.indexOf('micromessenger') != -1;
 var isQQ = ua.indexOf('qq/') != -1;
 var isSafari = ua.indexOf('safari') != -1;
 ```
+
+## 3、webview 支持自动播放
+
+- Android 
+    ```js
+    // 支持js
+    settings.setJavaScriptEnabled(true);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        // 禁用配置
+        settings.setMediaPlaybackRequiresUserGesture(false);
+    }
+    ```
+- IOS 
+    - UIWebview
+        ```js
+        webView.mediaPlaybackRequiresUserAction = false
+        ```
+    - WKWebView
+        ```js
+        let config = WKWebViewConfiguraation()
+        if #available(iOS 10.0, *) {
+            config.mediaTypesRequiringUserActionForPlayback = []
+        } else {
+            if #available(iOS 9.0, *) {
+                config.requiresUserActionForMediaPlayback = false
+            } else {
+                config.mediaPlaybackRequiresUserAction = false
+            }
+        }
+        ```
