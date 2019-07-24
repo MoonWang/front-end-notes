@@ -68,6 +68,10 @@
 
 ### 2、git
 
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/5.Engineering/2.git/1.基础用法.md" target="_blank">1.基础用法</a>
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/5.Engineering/2.git/2.图解命令.md" target="_blank">2.图解命令</a>
+- <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/5.Engineering/2.git/6.分支管理.md" target="_blank">6.分支管理</a>
+
 ### 3、lint
 
 - <a href="https://github.com/MoonWang/front-end-notes/tree/master/basic/5.Engineering/3.lint/1.ESLint.md" target="_blank">1.ESLint入门</a>
