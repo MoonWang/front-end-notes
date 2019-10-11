@@ -111,3 +111,8 @@
 ## 2.3 性能和安全
 
 - <a href="https://github.com/MoonWang/front-end-notes/blob/master/senior/3.性能和安全/0.《Web 前后端漏洞分析与防御技巧》网课笔记.md" target="_blank">0.《Web 前后端漏洞分析与防御技巧》网课笔记</a>
+
+# 三、其他
+
+## 1、<a href="https://github.com/MoonWang/front-end-notes/blob/master/other/1.保险.md" target="_blank">保险</a>
+
