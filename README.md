@@ -116,3 +116,11 @@
 
 ## 1、<a href="https://github.com/MoonWang/front-end-notes/blob/master/other/1.保险.md" target="_blank">保险</a>
 
+
+# 四、课题
+
+## 1、基于 monorepo 管理模式改造项目
+
+- [monorepo 方案选择及落地](/topics/基于monorepo管理模式改造cdnplus项目/1、monorepo方案选择及落地.md)
+- [基于 Docker+Gogs+Drone 的 CI/CD 流程说明](/topics/基于monorepo管理模式改造cdnplus项目/2、基于Docker+Gogs+Drone的CICD流程说明.md.md)
+- [基于 WSL2+Docker 部署 Gogs+Drone (Win10)](/topics/基于monorepo管理模式改造cdnplus项目/3、基于WSL2+Docker部署Gogs+Drone(Win10).md)
