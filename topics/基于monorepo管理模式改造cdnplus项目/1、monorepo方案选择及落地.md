@@ -24,7 +24,6 @@
 
 ## 1、引入 pnpm
 
-
 ### 1.1 全局安装
 
 ```bash
@@ -296,7 +295,7 @@ module.exports = {
 
 #### 2.2.3 remote.build.sh
 
-该脚本用于执行前端远端打包的需求，具体的说明可查看[基于 docker + gogs + drone 实现 CI/CD](./2、基于 docker + gogs + drone 实现 CICD.md)。该脚本为实现通用，需要做如下调整：
+该脚本用于执行前端远端打包的需求，具体的说明可查看[基于docker+gogs+drone实现CI/CD](./2、基于 docker + gogs + drone 实现 CICD.md)。该脚本为实现通用，需要做如下调整：
 
 - 项目名改为由 drone 中设置的环境变量传入
 - 数据持久化调整，dist 和 last-commit-hash 需要根据产品分别存储
@@ -306,6 +305,9 @@ module.exports = {
 ```sh
 # 获取环境变量
 PKG_NAME=${PKG_NAME}
+
+# 检测并确保当前项目的主缓存目录存在
+[ -d /tmp/cache/$PKG_NAME ] || mkdir -p /tmp/cache/$PKG_NAME
 
 # 判断 src 是否有改变
 git diff HEAD $last_commit_hash ./packages/common | grep -E 'diff'
@@ -318,11 +320,11 @@ pnpm i --unsafe-perm || error_exit "** pnpm install failed **"
 
 # 缓存 dist 目录
 [ -d /tmp/cache/dist ] || mkdir -p /tmp/cache/dist
-cp -rf ./packages/$PKG_NAME/dist/ /tmp/cache/dist/$PKG_NAME
+cp -rf ./packages/$PKG_NAME/dist /tmp/cache/$PKG_NAME
 
 # 缓存 last-commit-hash
-[ -d /tmp/cache/last-commit-hash ] || mkdir -p /tmp/cache/last-commit-hash
-echo `git rev-parse HEAD` > /tmp/cache/last-commit-hash/$PKG_NAME
+echo `git rev-parse HEAD` > /tmp/cache/$PKG_NAME/last-commit-hash
+
 ```
 
 #### 2.2.4 Dockerfile
@@ -338,6 +340,7 @@ RUN mkdir -p /www/h5/${PKG_NAME}
 WORKDIR /www/h5/$PKG_NAME
 # 复制 dist 目录
 ADD packages/$PKG_NAME/dist /www/h5/$PKG_NAME
+
 ```
 
 #### 2.2.5 .drone.k8s.yaml
@@ -371,9 +374,10 @@ steps:
       commands:
           - envsubst < .drone.k8s.yaml > k8s.yaml # 调用仓库根目录下的 .drone.k8s.yaml
           - kubectl apply -f k8s.yaml
+
 ```
 
-### 2.2.6 jenkinsfile
+#### 2.2.6 jenkinsfile
 
 需要在各 stage.steps 中修改配置文件，替换占位符，用于支持各配置文件通用。
 
@@ -400,9 +404,10 @@ pipeline {
 		}
 	}
 }
+
 ```
 
-### 2.2.7 条件执行
+#### 2.2.7 条件执行
 
 - drone ：考虑通过 branch name 进行约束（分支名以迭代序号开始）
 
@@ -416,6 +421,7 @@ steps:
         branch: # glob 匹配模式
           - sprint[1-9][0-9]        # 支持无后缀（通用）
           - sprint[1-9][0-9]-cdn   	# 支持指定后缀（定制）
+
 ```
 
 
@@ -440,6 +446,7 @@ pipeline {
         }
 	}
 }
+
 ```
 
 

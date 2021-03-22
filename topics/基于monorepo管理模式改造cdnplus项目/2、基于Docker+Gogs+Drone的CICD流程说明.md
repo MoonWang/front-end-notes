@@ -305,13 +305,12 @@ fi
 if [ $current_src_changed == 1 ]; then
     echo "== skip build, copy last dist =="
     # 无需重新 build ，将上次保存的 dist 拷过来用于下一步的 docker 打包
-    cp -rf /tmp/cache/dist/ ./dist  || error_exit "** copy last dist failed **"
+    cp -rf /tmp/cache/dist ./  || error_exit "** copy last dist failed **"
 else
 	# 执行构建
     npm run build || error_exit "** build failed **"
-
-    [ -d /tmp/cache/dist ] || mkdir -p /tmp/cache/dist
-    cp -rf ./dist/ /tmp/cache/dist
+	# 保留一份 dist ，用于无需 build 时的 docker 构建
+    cp -rf ./dist /tmp/cache
 fi
 ```
 

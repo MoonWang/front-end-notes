@@ -42,7 +42,6 @@ $ wsl --set-default-version 2
 
 ### 5.1 启用 ssh
 
-
 ```bash
 # 1、设置root的口令（密码），用作后续登陆使用
 sudo passwd root
@@ -55,6 +54,7 @@ sudo vim /etc/ssh/sshd_config
 ```
 
 在 sshd_config 中找到下面四处并修改：
+
 ```bash
 Port = 8022
 ListenAddress 0.0.0.0		# 如果需要指定监听的 IP 则去除最左侧的井号，并配置对应 IP ，默认即监听 PC 所有 IP
@@ -63,6 +63,7 @@ PasswordAuthentication yes	 # 将 no 改为 yes 表示使用帐号密码方式�
 ```
 
 启动SSH并检查状态：
+
 ```bash
 sudo service ssh start		# 启动SSH服务
 sudo service ssh status		# 检查状态
@@ -99,13 +100,13 @@ $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 - 勾选 Use the WSL 2 based engine
 - 勾选 Expose daemon on tcp://localhost:2375 without TLS
-  - 如果后面发现 wsl 连不上 docker ，可以尝试添加 C:\ProgramData\Docker\config\daemon.json 并配置 `{ "hosts": ["tcp://127.0.0.1:2375"] }`
+    - 如果后面发现 wsl 连不上 docker ，可以尝试添加 C:\ProgramData\Docker\config\daemon.json 并配置 `{ "hosts": ["tcp://127.0.0.1:2375"] }`
 
 ### 2.2 Resources
 
 - WSL Integration 子菜单中
-  - 勾选 Enable integration with my default WSL distro
-  - 启用所需的 Linux 分发版，此处我们选择 Ubuntu-18.04
+    - 勾选 Enable integration with my default WSL distro
+    - 启用所需的 Linux 分发版，此处我们选择 Ubuntu-18.04
 
 ### 2.3 Docker Engine
 
